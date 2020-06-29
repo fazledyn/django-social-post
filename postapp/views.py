@@ -38,6 +38,8 @@ def dashboard(request):
 @login_required
 def site_logout(request):
     logout(request)
+    print(request.session.get('username', "Anonymous"))
+
     return redirect('index')
 
 
@@ -74,7 +76,10 @@ def signup(request):
 
 def index(request):
 
-    if request.session.get('user_name', "Anonymous") is not "Anonymous":
+    if request.session.get('username', "Anonymous") is not "Anonymous":
+        print(request.session)
+        print(request.session.get('username', "Anonymous"))
+
         return redirect('dashboard')
 
     if request.method == 'POST':
@@ -85,7 +90,7 @@ def index(request):
 
         if user is not None:
             login(request, user)
-            request.session['user_name'] = username
+            request.session['username'] = username
             print("username: ", username, " password: ", password)
             return redirect('dashboard')
 
