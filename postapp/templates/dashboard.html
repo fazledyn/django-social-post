@@ -13,6 +13,8 @@
         <div class="container-fluid"><a class="navbar-brand" href="#"><strong>Django Social Post</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/posts">My Posts</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard">Dashboard</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
                 </ul>
             </div>
@@ -49,25 +51,28 @@
                 </div>
             </div>
             <div class="row">
+                {% if post_list is not None %}
+                
+                    {% for post in post_list %}
+                    <div class="col-md-4 col-lg-6">
+                        <div class="card">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}" width="538px"> {% endif %}
 
-                {% for post in post_list %}
-                <div class="col-md-4 col-lg-6">
-                    <div class="card">
-                        {% if post.image %}
-                        <img src="{{ post.image.url }}" width="538px"> {% endif %}
-
-                        <div class="card-body">
-                            <h4 class="card-title">{{ post.title }}</h4>
-                            <h6 class="text-muted card-subtitle mb-2">posted by <b>{{ post.author }}</b></h6>
-                            <p class="card-text">{{ post.content }}</p>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ post.title }}</h4>
+                                <h6 class="text-muted card-subtitle mb-2">posted by <b>{{ post.author }}</b></h6>
+                                <p class="card-text">{{ post.content }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
 
+                {% endif %}
             </div>
         </div>
     </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>

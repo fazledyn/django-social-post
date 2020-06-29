@@ -1,14 +1,17 @@
-from .models import Post
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib import messages
+
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
+from .models import Post
 
 
 # sub-function for creating posts
+
 def create_post(request):
     author = request.user.username
     post_title = request.POST.get("title")
@@ -20,6 +23,8 @@ def create_post(request):
                                    image=post_image,
                                    author=author)
     new_post.save()
+
+# end of sub functions
 
 
 @login_required
@@ -95,3 +100,17 @@ def index(request):
             return redirect('dashboard')
 
     return render(request, 'index.html')
+
+
+def myposts(request):
+
+    if request.method == 'POST':
+        create_post(request)
+        return redirect('dashboard')
+
+    else:
+        current_user = request.user
+        posts = Post.objects.filter(author=current_user.username)
+        context = {'post_list':posts}
+        
+        return render(request, 'dashboard.html', context)
