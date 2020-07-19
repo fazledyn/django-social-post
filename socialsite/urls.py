@@ -19,8 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('postapp.urls')),
+    path('admin/',  admin.site.urls),
+    path('',        include('postapp.urls')),
+    path('api/',    include('postapp.api_urls')),
 ]
 
 if settings.DEBUG:
