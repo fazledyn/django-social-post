@@ -38,7 +38,7 @@ def dashboard(request):
     if request.method == 'POST':
         print("In default Views")
         create_post(request)
-        return redirect('dashboard')
+        return redirect('dashboard') 
 
     else:
         post_list = Post.objects.all()
@@ -64,8 +64,7 @@ def signup(request):
         password2 = request.POST.get("password2")
 
         if password1 == password2 and len(password1) >= 8:
-            new_user = User.objects.create_user(
-                username=username, password=password1)
+            new_user = User.objects.create_user(username=username, password=password1)
             new_user.save()
             print("new user creatd !")
             return redirect('/')
