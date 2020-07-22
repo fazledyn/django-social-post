@@ -9,12 +9,6 @@ from django.http import HttpResponse
 
 from .models import Post
 
-# TODO
-'''
-1. Debug double post problem in 'dashboard'
-2. REST API posting test
-'''
-#
 
 # sub-function for creating posts
 
