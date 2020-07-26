@@ -52,24 +52,22 @@
             </div>
             <div class="row">
                 {% if post_list is not None %}
-                
                     {% for post in post_list %}
-                    <div class="col-md-4 col-lg-6">
-                        <div class="card">
-                            {% if post.image %}
-                            <img src="{{ post.image.url }}" width="538px"> {% endif %}
+                        <div class="col-md-4 col-lg-6">
+                            <div class="card">
+                                {% if post.image %}
+                                <img src="{{ post.image.url }}" width="538px"> {% endif %}
 
-                            <div class="card-body">
-                                <h4 class="card-title">{{ post.title }}</h4>
-                                <h6 class="text-muted card-subtitle mb-2">posted by <b>{{ post.author }}</b></h6>
-                                <div>
-                                    {{ post.content }}
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ post.title }}</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">posted by <b>{{ post.author }}</b></h6>
+                                    <div>
+                                        {{ post.content }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
-
                 {% endif %}
             </div>
         </div>
