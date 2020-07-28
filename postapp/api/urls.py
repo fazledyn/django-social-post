@@ -8,6 +8,4 @@ app_name = "postapp"
 router = routers.SimpleRouter(trailing_slash=True)
 router.register(r'post', PostViewSet)
 
-urlpatterns = [
-    router.urls
-]
+urlpatterns = router.urls
