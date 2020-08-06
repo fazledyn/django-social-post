@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # personal apps
-    'postapp'
+    'postapp',
+    'meme',
 ]
 
 MIDDLEWARE = [
